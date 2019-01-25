@@ -5,7 +5,7 @@ from MNA.ShowResults import printAddedElements
 
 app = Flask(__name__, template_folder='Templates', static_folder='static',  static_url_path='/static')
 
-flask_debug = True
+flask_debug = False
 
 global_circuit = [Circuit()]
 
