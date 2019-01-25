@@ -42,7 +42,6 @@ function createEl(event){
 			'value': value,
 			'neg': neg,
 			'pos': pos,
-			// 'isOpAmp': (selectedItem == 'OpAmp') ? 1 : 0,
 			'out': (selectedItem == 'OpAmp') ? out : -1
 		}),
 		url:`/addelement/${selectedItem}`,
@@ -82,18 +81,6 @@ $("#node-form").submit(()=>{
 	$.ajaxSetup({
 		async: false
 	});
-	// $.getJson('/calculate', (data)=>{
-	// 	const items = [];
-	// 	$.each(data, (_, val)=>{
-	// 		items.push('<li>' + val + '</li>');
-	// 	});
-	// 	const prevHTML = $("#node-nums").html();
-	// 	$("#node-nums").html('<ol type="1" id="answer">' + items + '</ol>');
-	// 	console.log('data : ', data);
-	// 	setTimeout(()=>{
-	// 		$("#answer").html(prevHTML);
-	// 	},5000);
-	// });
 	$.ajax({
 		data: $(this).serialize(),
 		type: 'POST',
