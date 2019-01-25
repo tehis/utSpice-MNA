@@ -5,10 +5,15 @@ from MNA.ShowResults import printAddedElements
 
 app = Flask(__name__, template_folder='Templates', static_folder='static',  static_url_path='/static')
 
+flask_debug = False
+
 global_circuit = [Circuit()]
 
 @app.route('/sim', methods = ['GET'])
 def page():
+    global global_circuit
+    del global_circuit[0]
+    global_circuit.append(Circuit())
     return render_template('index.html')
 
 
@@ -28,4 +33,4 @@ def addelement(name):
 
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+    app.run(port=8000, debug=flask_debug)
