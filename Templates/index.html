@@ -4,9 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>UT SPICE</title>
-		<!--href="./style.css"-->
 		<link rel="stylesheet" href={{ url_for('static', filename='style.css') }}  />
+		<link rel="stylesheet" href={{ url_for('static', filename='button.css') }}  />
 		<link rel="shortcut icon" href={{ url_for('static', filename='img/icon.png') }} />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	</head>
 
 	<body onload="renderSidebar()">
@@ -17,17 +18,7 @@
 				</div>
 				<div id="node-nums">
 					<form id="node-form" method="POST" action={{ url_for('calculate') }}>
-						
-						<div >
-							<input type="number" name="node1" id="node1" class="text-field">
-							<label for="node1">Node 1</label>
-							<input type="number" name="node2" id="node2" class="text-field">
-							<label for="node2">Node 2</label>
-						</div>
-						<p>
-							Enter two node numbers to get their voltage 
-							<input type="submit"></input>
-						</p>
+						<button type="submit" id="calc-btn btn">Calculate</button>
 					</form>
 				</div>
 			</div>
@@ -36,6 +27,7 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 		<script src={{ url_for('static', filename='script.js') }}></script>
+		<script src={{ url_for('static', filename='button.js') }}></script>
 	</body>
 
 </html>
