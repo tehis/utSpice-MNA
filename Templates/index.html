@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>UT SPICE</title>
+		<!--href="./style.css"-->
+		<link rel="stylesheet" href={{ url_for('static', filename='style.css') }}  />
+		<link rel="shortcut icon" href={{ url_for('static', filename='img/icon.png') }} />
+	</head>
+
+	<body onload="renderSidebar()">
+		<div id="container">
+			
+			<div id="inputs">
+				<div id="canvas" onclick="createEl(event)">
+				</div>
+				<div id="node-nums">
+					<form id="node-form" method="POST" action={{ url_for('calculate') }}>
+						
+						<div >
+							<input type="number" name="node1" id="node1" class="text-field">
+							<label for="node1">Node 1</label>
+							<input type="number" name="node2" id="node2" class="text-field">
+							<label for="node2">Node 2</label>
+						</div>
+						<p>
+							Enter two node numbers to get their voltage 
+							<input type="submit"></input>
+						</p>
+					</form>
+				</div>
+			</div>
+			<div id="sidebar">
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script src={{ url_for('static', filename='script.js') }}></script>
+	</body>
+
+</html>

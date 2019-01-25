@@ -1,0 +1,3 @@
+[submodule "MNA"]
+	path = MNA
+	url = ./
