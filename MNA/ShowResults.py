@@ -1,4 +1,5 @@
 from MNA.Circuit import *
+import json
 
 def printResistors(elements):
     for element in elements:
@@ -45,6 +46,20 @@ def printAddedElements(circuit):
 
 
     print('=============================================================')
+
+
+
+def getAnswers(circuit):
+    nodesVolt = {i: str(circuit.nodes[i].volt) for i in circuit.nodes}
+    circIndVolt = {i: [str(indVolt.Voltage), indVolt.PosTerm, indVolt.NegTerm, str(indVolt.Current)] for i in range(len(circuit.indVolt)) for indVolt in circuit.indVolt}
+    circOpAmp = {i: [opAmp.PosInput, opAmp.NegInput, opAmp.OutNode, str(opAmp.cur)] for i in range(len(circuit.opAmps)) for opAmp in circuit.opAmps}
+    circResistors = {f'left{res.leftNode} right{res.rightNode}': [res.Resistance, str(res.Voltage), str(res.Current)] for res in circuit.resistors}
+    circCapacitor = {f'left{cap.leftNode} right{cap.rightNode}': [cap.Capacitance, str(cap.Voltage), str(cap.Current)] for cap in circuit.capacitors}
+    circinduct = {f'left{ind.leftNode} right{ind.rightNode}': [ind.Inductane, str(ind.Voltage), str(ind.Current)] for ind in circuit.inductors}
+    return nodesVolt, circIndVolt, circOpAmp, circResistors, circCapacitor, circinduct
+
+
+
 
 def printResults(circuit):
     for i in range(1, len(circuit.nodes)):
