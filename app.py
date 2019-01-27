@@ -21,8 +21,6 @@ def page():
 def calculate():
     global global_circuit
     calculated = global_circuit[0].calc()
-    # res = {i: str(e[0]) for i,e in enumerate(answer.tolist())}
-    # return jsonify(printResults(global_circuit[0]))
     result = getAnswers(global_circuit[0])
     answer = {}
     answer['Nodes Voltage'] = result[0]
