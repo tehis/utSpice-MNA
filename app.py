@@ -2,6 +2,9 @@ from flask import Flask, render_template, url_for, request, jsonify
 from makecircuit import add_element_to_circuit
 from MNA.Circuit import Circuit
 from MNA.ShowResults import getAnswers
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
 
 app = Flask(__name__, template_folder='Templates', static_folder='static',  static_url_path='/static')
 
@@ -35,6 +38,7 @@ def calculate():
 def addelement(name):
     global global_circuit
     data = request.get_json()
+    logging.debug(f'got data: {data}')
     add_element_to_circuit(circuit_list=global_circuit, **data)
     return 'Success'
 
