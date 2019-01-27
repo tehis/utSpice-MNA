@@ -56,7 +56,7 @@ def getAnswers(circuit):
     circResistors = {f'left{res.leftNode} right{res.rightNode}': [res.Resistance, str(res.Voltage), str(res.Current)] for res in circuit.resistors}
     circCapacitor = {f'left{cap.leftNode} right{cap.rightNode}': [cap.Capacitance, str(cap.Voltage), str(cap.Current)] for cap in circuit.capacitors}
     circinduct = {f'left{ind.leftNode} right{ind.rightNode}': [ind.Inductane, str(ind.Voltage), str(ind.Current)] for ind in circuit.inductors}
-    return nodesVolt, circIndVolt, circOpAmp, circResistors, circCapacitor, circinduct
+    return (nodesVolt, circIndVolt, circOpAmp, circResistors, circCapacitor, circinduct)
 
 
 

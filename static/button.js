@@ -4,8 +4,9 @@ $("button").on("click", function() {
   
   
   setTimeout(function() {
-    $("button").html('Send');
-    $("button").css('background-color', '#40B4DE');
-    }, 1500);
+    $("button").html('Reset');
+    $("button").css('background-color', '#ef612d');
+    //Send - #40B4DE
+    }, 300);
 });
 

@@ -81,18 +81,29 @@ $("#node-form").submit(()=>{
 	$.ajaxSetup({
 		async: false
 	});
+	const prevs = [];
 	$.ajax({
 		data: $(this).serialize(),
 		type: 'POST',
 		url: '/calculate',
 		success: (data)=>{
 			const prevHTML = $("#node-nums").html();
-			$("#node-nums").html('<div id="ans">' + JSON.stringify(data) + '</div>');
+			$("#node-nums").html('<div id="ans">' + JSON.stringify(data) + '</div>'
+								+ '<button id="reset-btn">Reset</button>');
 			console.log('data : ', data);
-			setTimeout(()=>{
-				$("#ans").html(prevHTML);
-			},5000);
+			prevs.push(prevHTML);
+			// setTimeout(()=>{
+			// 	$("#ans").html(prevHTML);
+			// },5000);
 		}
+	});
+	$("#reset-btn").on('click', ()=>{
+		$("#ans").html(prevs[0]);
+		$(".canvas-element").remove();
+		$.ajax({
+			type: 'POST',
+			url: '/reset'
+		});
 	});
 	return false;
 });

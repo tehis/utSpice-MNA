@@ -20,16 +20,18 @@ def page():
 @app.route('/calculate', methods = ['POST'])
 def calculate():
     global global_circuit
-    answer = global_circuit[0].calc()
-    res = {i: str(e[0]) for i,e in enumerate(answer.tolist())}
-    for ind in global_circuit[0].nodes:
-        print(f'index: {ind}\tvolt: {global_circuit[0].nodes[ind].volt}')
+    calculated = global_circuit[0].calc()
+    # res = {i: str(e[0]) for i,e in enumerate(answer.tolist())}
     # return jsonify(printResults(global_circuit[0]))
-    return jsonify({
-        obj: ans for obj, ans in zip(['Node Voltages', 'Circuit Independent Voltages',
-                             'Circuit Resistors', 'Circuit Capacitors',
-                                'Circuit Inductors'], getAnswers(global_circuit[0]))
-    })
+    result = getAnswers(global_circuit[0])
+    answer = {}
+    answer['Nodes Voltage'] = result[0]
+    answer['Circuit Independent Voltage Sources'] = result[1]
+    answer['Circuit OpAmps'] = result[2]
+    answer['Circuit Resistors'] = result[3]
+    answer['Circuit Capacitors'] = result[4]
+    answer['Circuit Inductors'] = result[5]
+    return jsonify(answer)
 
 @app.route('/addelement/<name>', methods = ['POST'])
 def addelement(name):
@@ -37,6 +39,14 @@ def addelement(name):
     data = request.get_json()
     add_element_to_circuit(circuit_list=global_circuit, **data)
     return 'Success'
+
+
+@app.route('/reset', methods = ['POST'])
+def reset():
+    global global_circuit
+    del global_circuit[0]
+    global_circuit.append(Circuit())
+    return jsonify(len(global_circuit) == 1 and type(global_circuit[0]) == Circuit)
 
 
 if __name__ == '__main__':
