@@ -38,7 +38,7 @@ def calculate():
 def addelement(name):
     global global_circuit
     data = request.get_json()
-    logging.debug(f'got data: {data}')
+    logging.debug(f'data: {data}')
     add_element_to_circuit(circuit_list=global_circuit, **data)
     return 'Success'
 
