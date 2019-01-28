@@ -30,7 +30,7 @@ function createEl(event){
 	else{
 		out = Number(prompt("Please enter the node connected to the output"));
 	}
-	value = (!isNaN(value)) ? parseFloat(value) : value;
+	value = (/\d/.test(value)) ? parseFloat(value) : value;
 	console.log('value: ', value);
 	$.ajaxSetup({
 		async: false
