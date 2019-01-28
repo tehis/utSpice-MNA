@@ -43,10 +43,10 @@ class Circuit():
             self.__alternate = True
             phasorVoltage = self.convertToPhasor(voltage)
 
-            print("Max:", self.__max)
-            print("theta: ", self.__theta)
-            print("W: ", self.__w)
-            print("phasor volt:", phasorVoltage)
+            # print("Max:", self.__max)
+            # print("theta: ", self.__theta)
+            # print("W: ", self.__w)
+            # print("phasor volt:", phasorVoltage)
 
             newIndVolt = IndepVolt(phasorVoltage, posTerm, negTerm, self.nodes)
         else:
@@ -59,10 +59,10 @@ class Circuit():
             self.__alternate = True
             phasorCurrent = self.convertToPhasor(current)
 
-            print("Max:", self.__max)
-            print("theta: ", self.__theta)
-            print("W: ", self.__w)
-            print("phasor cur:", phasorCurrent)
+            # print("Max:", self.__max)
+            # print("theta: ", self.__theta)
+            # print("W: ", self.__w)
+            # print("phasor cur:", phasorCurrent)
 
             newIndCur = IndepCur(phasorCurrent, comeInNode, comeOutNode, self.nodes)
         else:
@@ -109,7 +109,7 @@ class Circuit():
                 self.indVolt, self.independentCurrent, self.opAmps)
         solver.generateZ(self.nodes, self.indVolt)
         results = solver.solveCircut()
-        print(results)
+        # print(results)
         self.addResultsToCircut(results)
         return results
 

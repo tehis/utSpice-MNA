@@ -50,7 +50,7 @@ def printAddedElements(circuit):
 
 
 def getAnswers(circuit):
-    nodesVolt = {i: str(circuit.nodes[i].volt) for i in range(1, len(circuit.nodes))}
+    nodesVolt = {circuit.nodes[i].Number: str(circuit.nodes[i].volt) for i in range(1, len(circuit.nodes))}
     circIndVolt = {i: [str(indVolt.Voltage), indVolt.PosTerm, indVolt.NegTerm, str(indVolt.Current)] for i in range(1, len(circuit.indVolt)+1) for indVolt in circuit.indVolt}
     circOpAmp = {i: [opAmp.PosInput, opAmp.NegInput, opAmp.OutNode, str(opAmp.cur)] for i in range(1, len(circuit.opAmps)+1) for opAmp in circuit.opAmps}
     circResistors = {f'left{res.leftNode} right{res.rightNode}': [res.Resistance, str(res.Voltage), str(res.Current)] for res in circuit.resistors}

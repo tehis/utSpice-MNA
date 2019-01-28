@@ -32,6 +32,8 @@ def calculate():
     answer['Circuit Resistors'] = result[3]
     answer['Circuit Capacitors'] = result[4]
     answer['Circuit Inductors'] = result[5]
+    from MNA.ShowResults import printResults
+    printResults(global_circuit[0])
     return jsonify(answer)
 
 @app.route('/addelement/<name>', methods = ['POST'])
