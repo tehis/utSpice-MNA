@@ -4,8 +4,12 @@ def add_element_to_circuit(circuit_list, type, value, neg, pos, out = -1):
     if type == "Resistor":
         circuit_list[0].addResistor(pos, neg, value)
     elif type == 'Battery':
+        if str.isdecimal(value):
+            value = float(value)
         circuit_list[0].addIndVolt(value, pos, neg)
     elif type == 'Current':
+        if str.isdecimal(value):
+            value = float(value)
         circuit_list[0].addIndCur(pos, neg, value)
     elif type == 'Capacitor':
         circuit_list[0].addCapacitor(value, neg, pos)
