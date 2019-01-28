@@ -30,7 +30,9 @@ function createEl(event){
 	else{
 		out = Number(prompt("Please enter the node connected to the output"));
 	}
-	value = (/^\d$/.test(value)) ? parseFloat(value) : value;
+	if(selectedItem == "Battery" || selectedItem == "Current"){
+		value = (/^\d$/.test(value)) ? parseFloat(value) : value;
+	}
 	console.log('value: ', value);
 	$.ajaxSetup({
 		async: false
