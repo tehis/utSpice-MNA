@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, jsonify
 from makecircuit import add_element_to_circuit
 from MNA.Circuit import Circuit
-from MNA.ShowResults import getAnswers
+from MNA.ShowResults import getAnswers, printAddedElements
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
@@ -41,10 +41,8 @@ def addelement(name):
     global global_circuit
     data = request.get_json()
     logging.debug(f'data: {data}')
-    logging.debug(f'''type of input data: 
-            typeof value: {type(data.get('value', False))}
-    ''')
     add_element_to_circuit(circuit_list=global_circuit, **data)
+    printAddedElements(global_circuit[0])
     return 'Success'
 
 
