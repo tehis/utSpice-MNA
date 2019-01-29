@@ -62,7 +62,7 @@ function createEl(event){
 		'Inductor': 'L',
 		'OpAmp': 'OA'
 	};
-	const statement = `${map[selectedItem]} ${neg} ${pos} ${value}`
+	const statement = (selectedItem != "OpAmp") ? `${map[selectedItem]} ${neg} ${pos} ${value}` : `${map[selectedItem]} ${neg} ${pos} ${out}`;
 	console.log('statement: ', statement)
 	$.ajax({
 		type: 'POST',

@@ -54,6 +54,7 @@ def handle_statement(statement):
     print(f'statement: {statement}')
     ans = UIans(circuit=global_circuit, statement=statement)
     if ans is not None:
+        ans.replace('\n', '<br />')
         return ans
 
 
