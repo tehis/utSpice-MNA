@@ -31,7 +31,7 @@ function createEl(event){
 		out = Number(prompt("Please enter the node connected to the output"));
 	}
 	if(selectedItem == "Battery" || selectedItem == "Current"){
-		value = (/^\d$/.test(value)) ? parseFloat(value) : value;
+		value = (/^\d*$/.test(value)) ? parseFloat(value) : value;
 	}
 	console.log('value: ', value);
 	$.ajaxSetup({

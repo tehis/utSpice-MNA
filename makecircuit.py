@@ -7,6 +7,7 @@ def add_element_to_circuit(circuit_list, type, value, neg, pos, out = -1):
     if type == "Resistor":
         circuit_list[0].addResistor(pos, neg, value)
         logging.debug(f'ressistors: {circuit_list[0].resistors}')
+        logging.debug(f'ressistors: {circuit_list[0].resistors[0].Voltage}')
     elif type == 'Battery':
         if str.isdecimal(value):
             value = float(value)
