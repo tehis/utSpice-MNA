@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, jsonify
 from makecircuit import add_element_to_circuit
 from MNA.Circuit import Circuit
 from MNA.ShowResults import getAnswers, printAddedElements
+from MNA.Ui import UIans
 import logging
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
@@ -44,6 +45,17 @@ def addelement(name):
     add_element_to_circuit(circuit_list=global_circuit, **data)
     printAddedElements(global_circuit[0])
     return 'Success'
+
+
+@app.route('/state/<string:statement>', methods = ['POST'])
+def handle_statement(statement):
+    print(f'statement before change: {statement}')
+    statement = statement.replace('#', ' ')
+    print(f'statement: {statement}')
+    ans = UIans(circuit=global_circuit, statement=statement)
+    if ans is not None:
+        return ans
+
 
 
 @app.route('/reset', methods = ['POST'])

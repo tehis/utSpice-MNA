@@ -59,6 +59,44 @@ def getAnswers(circuit):
     return (nodesVolt, circIndVolt, circOpAmp, circResistors, circCapacitor, circinduct)
 
 
+def getShowResultAns(circuit):
+    result = ""
+    for i in range(1, len(circuit.nodes)):
+        result += 'nodeNumber: ' + str(circuit.nodes[i].Number) + '\n'
+        result += str(circuit.nodes[i].volt) + '\n'
+    for indVolt in circuit.indVolt:
+        result += 'Independent voltage source:' + '\n'
+        result += '     volt: ' + str(indVolt.Voltage) + '\n'
+        result += '     posTerm : negTerm ' + str(indVolt.PosTerm) + ' : ' + str(indVolt.NegTerm) + '\n'
+        result += '     current: ' + str(indVolt.Current) + '\n'
+    for opAmp in circuit.opAmps:
+        result += 'opAmp:' + '\n'
+        result += 'negIn : posIn ' + str(opAmp.NegInput) + ' : ' + str(opAmp.PosInput) + '\n'
+        result += 'outNode: ' + str(opAmp.OutNode) + '\n'
+        result += 'cur = ' + str(opAmp.cur) + '\n'
+
+    for res in circuit.resistors:
+        result += "Resistors:" + '\n'
+        result += "Left : Right" + str(res.leftNode) + ' : ' + str(res.rightNode) + '\n'
+        result += 'resistance: ' + str(res.Resistance) + '\n'
+        result += 'voltage: ' + str(res.Voltage) + '\n'
+        result += 'current: ' + str(res.Current) + '\n'
+
+    for cap in circuit.capacitors:
+        result += 'capacitors:' + '\n'
+        result += "Left : Right" + str(cap.leftNode) + ' : ' + str(cap.rightNode) + '\n'
+        result += 'C: ' + str(cap.Capacitance) + '\n'
+        result += 'voltage: ' + str(cap.Voltage) + '\n'
+        result += 'current: ' + str(cap.Current) + '\n'
+    
+    for ind in circuit.inductors:
+        result += 'inductors:' + '\n'
+        result += "Left : Right" + str(ind.leftNode) + ' : ' + str(ind.rightNode) + '\n'
+        result += 'L: ' + str(ind.Inductane) + '\n'
+        result += 'voltage: ' + str(ind.Voltage) + '\n'
+        result += 'current: ' + str(ind.Current) + '\n'
+    return result
+
 
 
 def printResults(circuit):

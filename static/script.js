@@ -37,18 +37,38 @@ function createEl(event){
 	$.ajaxSetup({
 		async: false
 	});
-	const req = $.ajax({
+	// const req = $.ajax({
+	// 	type: 'POST',
+	// 	contentType:'application/json;charset-utf-08',
+	// 	dataType: 'json',
+	// 	data:JSON.stringify({
+	// 		'type': selectedItem,
+	// 		'value': value,
+	// 		'neg': neg,
+	// 		'pos': pos,
+	// 		'out': (selectedItem == 'OpAmp') ? out : -1
+	// 	}),
+	// 	url:`/addelement/${selectedItem}`,
+	// 	success: (data, textStatus, jQxhr)=>{
+	// 		if(textStatus == 'success') console.log('successfully sent data and response is: ', data);
+	// 		else console.error('data: ', data, '\n jQxhr: ', jQxhr);
+	// 	}
+	// });
+	const map = {
+		'Battery': 'IV',
+		'Current': 'IC'
+		,'Capacitor': 'C',
+		'Resistor': 'R',
+		'Inductor': 'L',
+		'OpAmp': 'OA'
+	};
+	const statement = `${map[selectedItem]} ${neg} ${pos} ${value}`
+	console.log('statement: ', statement)
+	$.ajax({
 		type: 'POST',
 		contentType:'application/json;charset-utf-08',
 		dataType: 'json',
-		data:JSON.stringify({
-			'type': selectedItem,
-			'value': value,
-			'neg': neg,
-			'pos': pos,
-			'out': (selectedItem == 'OpAmp') ? out : -1
-		}),
-		url:`/addelement/${selectedItem}`,
+		url:`/state/${statement}`,
 		success: (data, textStatus, jQxhr)=>{
 			if(textStatus == 'success') console.log('successfully sent data and response is: ', data);
 			else console.error('data: ', data, '\n jQxhr: ', jQxhr);
@@ -87,12 +107,13 @@ $("#node-form").submit(()=>{
 	});
 	const prevs = [];
 	$.ajax({
-		data: $(this).serialize(),
+		// data: $(this).serialize(),
 		type: 'POST',
-		url: '/calculate',
+		// url: '/calculate',
+		url: '/state/calculate',
 		success: (data)=>{
 			const prevHTML = $("#node-nums").html();
-			$("#node-nums").html('<div id="ans">' + JSON.stringify(data) + '</div>'
+			$("#node-nums").html('<div id="ans">' + data + '</div>'
 								+ '<button id="reset-btn">Reset</button>');
 			console.log('data : ', data);
 			prevs.push(prevHTML);
